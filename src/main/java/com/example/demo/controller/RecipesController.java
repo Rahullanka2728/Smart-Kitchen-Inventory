@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.demo.models.recipes;
 import com.example.demo.service.RecipesService;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/recipes")
@@ -43,5 +44,11 @@ public class RecipesController {
         recipesService.deleteRecipe(id);
 
         return "Recipe Deleted Successfully";
+    }
+    @PostMapping("/{id}/upload-image")
+    public String uploadRecipeImage(@PathVariable Long id,
+                                    @RequestParam("file") MultipartFile file) {
+
+        return recipesService.uploadRecipeImage(id, file);
     }
 }

@@ -1,8 +1,12 @@
 package com.example.demo.serviceiml;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.demo.service.S3Service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.models.recipes;
@@ -14,6 +18,8 @@ public class RecipesServiceImpl implements RecipesService {
 
     @Autowired
     private RecipesRepository recipesRepository;
+    @Autowired
+    private S3Service s3Service;
 
     @Override
     public recipes addRecipe(recipes recipe) {
@@ -58,5 +64,21 @@ public class RecipesServiceImpl implements RecipesService {
                 .orElseThrow(() -> new RuntimeException("Recipe not found"));
 
         recipesRepository.delete(recipe);
+    }
+    @Override
+    public String uploadRecipeImage(Long id, MultipartFile file) {
+
+        recipes recipe = recipesRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Recipe not found"));
+
+        // Upload image to S3
+        String imageUrl = s3Service.uploadFile(file);
+
+        // Save S3 URL into database
+        recipe.setImageUrl(imageUrl);
+
+        recipesRepository.save(recipe);
+
+        return imageUrl;
     }
 }
