@@ -5,12 +5,12 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.models.suppliers;
+import com.example.demo.models.Suppliers;
 
 @Repository
-public interface SuppliersRepository extends JpaRepository<suppliers, Long> {
+public interface SuppliersRepository extends JpaRepository<Suppliers, Long> {
 
-    Optional<suppliers> findByEmail(String email);
+    Optional<Suppliers> findByEmail(String email);
 
     boolean existsByEmail(String email);
 

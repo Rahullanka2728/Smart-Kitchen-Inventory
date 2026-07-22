@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.models.inventory_transactions;
+import com.example.demo.models.InventoryTransactions;
 
 @Repository
-public interface InventoryTransactionsRepository extends JpaRepository<inventory_transactions, Long> {
+public interface InventoryTransactionsRepository extends JpaRepository<InventoryTransactions, Long> {
 
-    List<inventory_transactions> findByIngredientId(Long ingredientId);
+    List<InventoryTransactions> findByIngredientId(Long ingredientId);
 
-    List<inventory_transactions> findByInventoryId(Long inventoryId);
+    List<InventoryTransactions> findByInventoryId(Long inventoryId);
 
 }

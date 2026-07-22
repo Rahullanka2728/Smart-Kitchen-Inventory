@@ -2,39 +2,41 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.example.demo.models.recipes;
-import com.example.demo.service.RecipesService;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.example.demo.models.Recipes;
+import com.example.demo.service.RecipesService;
 
 @RestController
 @RequestMapping("/api/recipes")
 @CrossOrigin(origins = "*")
 public class RecipesController {
 
-    @Autowired
-    private RecipesService recipesService;
+    private final RecipesService recipesService;
+
+    public RecipesController(RecipesService recipesService) {
+        this.recipesService = recipesService;
+    }
 
     @PostMapping
-    public recipes addRecipe(@RequestBody recipes recipe) {
+    public Recipes addRecipe(@RequestBody Recipes recipe) {
         return recipesService.addRecipe(recipe);
     }
 
     @GetMapping
-    public List<recipes> getAllRecipes() {
+    public List<Recipes> getAllRecipes() {
         return recipesService.getAllRecipes();
     }
 
     @GetMapping("/{id}")
-    public recipes getRecipeById(@PathVariable Long id) {
+    public Recipes getRecipeById(@PathVariable Long id) {
         return recipesService.getRecipeById(id);
     }
 
     @PutMapping("/{id}")
-    public recipes updateRecipe(@PathVariable Long id,
-                                @RequestBody recipes recipe) {
+    public Recipes updateRecipe(@PathVariable Long id,
+                                @RequestBody Recipes recipe) {
         return recipesService.updateRecipe(id, recipe);
     }
 
@@ -45,6 +47,7 @@ public class RecipesController {
 
         return "Recipe Deleted Successfully";
     }
+
     @PostMapping("/{id}/upload-image")
     public String uploadRecipeImage(@PathVariable Long id,
                                     @RequestParam("file") MultipartFile file) {

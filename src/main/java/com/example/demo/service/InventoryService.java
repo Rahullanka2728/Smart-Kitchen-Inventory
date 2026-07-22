@@ -2,17 +2,17 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.models.inventory;
+import com.example.demo.models.Inventory;
 
 public interface InventoryService {
 
-    inventory addInventory(inventory inventory);
+    Inventory addInventory(Inventory inventory);
 
-    List<inventory> getAllInventory();
+    List<Inventory> getAllInventory();
 
-    inventory getInventoryById(Long id);
+    Inventory getInventoryById(Long id);
 
-    inventory updateInventory(Long id, inventory inventory);
+    Inventory updateInventory(Long id, Inventory inventory);
 
     void deleteInventory(Long id);
 

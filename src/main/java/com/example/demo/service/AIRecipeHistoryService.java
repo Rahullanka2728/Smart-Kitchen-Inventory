@@ -2,17 +2,17 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.models.ai_recipe_history;
+import com.example.demo.models.AiRecipeHistory;
 
 public interface AIRecipeHistoryService {
 
-    ai_recipe_history saveHistory(ai_recipe_history history);
+    AiRecipeHistory saveHistory(AiRecipeHistory history);
 
-    List<ai_recipe_history> getAllHistory();
+    List<AiRecipeHistory> getAllHistory();
 
-    ai_recipe_history getHistoryById(Long id);
+    AiRecipeHistory getHistoryById(Long id);
 
-    ai_recipe_history updateHistory(Long id, ai_recipe_history history);
+    AiRecipeHistory updateHistory(Long id, AiRecipeHistory history);
 
     void deleteHistory(Long id);
 

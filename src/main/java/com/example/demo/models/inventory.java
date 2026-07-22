@@ -4,11 +4,18 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "inventory")
-public class inventory {
+public class Inventory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +23,7 @@ public class inventory {
 
     @ManyToOne
     @JoinColumn(name = "ingredient_id", nullable = false)
-    private ingredients ingredient;
+    private Ingredients ingredient;
 
     @Column(name = "available_quantity", nullable = false)
     private BigDecimal availableQuantity;
@@ -51,131 +58,110 @@ public class inventory {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    public inventory() {
+    public Inventory() {
     }
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public ingredients getIngredient() {
-		return ingredient;
-	}
+    public Ingredients getIngredient() {
+        return ingredient;
+    }
 
-	public void setIngredient(ingredients ingredient) {
-		this.ingredient = ingredient;
-	}
+    public void setIngredient(Ingredients ingredient) {
+        this.ingredient = ingredient;
+    }
 
-	public BigDecimal getAvailableQuantity() {
-		return availableQuantity;
-	}
+    public BigDecimal getAvailableQuantity() {
+        return availableQuantity;
+    }
 
-	public void setAvailableQuantity(BigDecimal availableQuantity) {
-		this.availableQuantity = availableQuantity;
-	}
+    public void setAvailableQuantity(BigDecimal availableQuantity) {
+        this.availableQuantity = availableQuantity;
+    }
 
-	public BigDecimal getReservedQuantity() {
-		return reservedQuantity;
-	}
+    public BigDecimal getReservedQuantity() {
+        return reservedQuantity;
+    }
 
-	public void setReservedQuantity(BigDecimal reservedQuantity) {
-		this.reservedQuantity = reservedQuantity;
-	}
+    public void setReservedQuantity(BigDecimal reservedQuantity) {
+        this.reservedQuantity = reservedQuantity;
+    }
 
-	public String getUnit() {
-		return unit;
-	}
+    public String getUnit() {
+        return unit;
+    }
 
-	public void setUnit(String unit) {
-		this.unit = unit;
-	}
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
 
-	public BigDecimal getPurchasePrice() {
-		return purchasePrice;
-	}
+    public BigDecimal getPurchasePrice() {
+        return purchasePrice;
+    }
 
-	public void setPurchasePrice(BigDecimal purchasePrice) {
-		this.purchasePrice = purchasePrice;
-	}
+    public void setPurchasePrice(BigDecimal purchasePrice) {
+        this.purchasePrice = purchasePrice;
+    }
 
-	public LocalDate getPurchaseDate() {
-		return purchaseDate;
-	}
+    public LocalDate getPurchaseDate() {
+        return purchaseDate;
+    }
 
-	public void setPurchaseDate(LocalDate purchaseDate) {
-		this.purchaseDate = purchaseDate;
-	}
+    public void setPurchaseDate(LocalDate purchaseDate) {
+        this.purchaseDate = purchaseDate;
+    }
 
-	public LocalDate getExpiryDate() {
-		return expiryDate;
-	}
+    public LocalDate getExpiryDate() {
+        return expiryDate;
+    }
 
-	public void setExpiryDate(LocalDate expiryDate) {
-		this.expiryDate = expiryDate;
-	}
+    public void setExpiryDate(LocalDate expiryDate) {
+        this.expiryDate = expiryDate;
+    }
 
-	public String getSupplierName() {
-		return supplierName;
-	}
+    public String getSupplierName() {
+        return supplierName;
+    }
 
-	public void setSupplierName(String supplierName) {
-		this.supplierName = supplierName;
-	}
+    public void setSupplierName(String supplierName) {
+        this.supplierName = supplierName;
+    }
 
-	public String getStorageLocation() {
-		return storageLocation;
-	}
+    public String getStorageLocation() {
+        return storageLocation;
+    }
 
-	public void setStorageLocation(String storageLocation) {
-		this.storageLocation = storageLocation;
-	}
+    public void setStorageLocation(String storageLocation) {
+        this.storageLocation = storageLocation;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
 
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
-	public inventory(Long id, ingredients ingredient, BigDecimal availableQuantity, BigDecimal reservedQuantity,
-			String unit, BigDecimal purchasePrice, LocalDate purchaseDate, LocalDate expiryDate, String supplierName,
-			String storageLocation, String status, LocalDateTime createdAt, LocalDateTime updatedAt) {
-		super();
-		this.id = id;
-		this.ingredient = ingredient;
-		this.availableQuantity = availableQuantity;
-		this.reservedQuantity = reservedQuantity;
-		this.unit = unit;
-		this.purchasePrice = purchasePrice;
-		this.purchaseDate = purchaseDate;
-		this.expiryDate = expiryDate;
-		this.supplierName = supplierName;
-		this.storageLocation = storageLocation;
-		this.status = status;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
-	}
-
-
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }

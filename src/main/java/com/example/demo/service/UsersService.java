@@ -2,20 +2,20 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.models.users;
+import com.example.demo.models.Users;
 
 public interface UsersService {
 
-    users registerUser(users user);
+    Users registerUser(Users user);
 
-    List<users> getAllUsers();
+    List<Users> getAllUsers();
 
-    users getUserById(Long id);
+    Users getUserById(Long id);
 
-    users updateUser(Long id, users user);
+    Users updateUser(Long id, Users user);
 
     void deleteUser(Long id);
 
-    users login(String email, String password);
+    Users login(String email, String password);
 
 }

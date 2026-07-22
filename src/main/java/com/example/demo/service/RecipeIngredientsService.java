@@ -2,17 +2,17 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.models.recipe_ingredients;
+import com.example.demo.models.RecipeIngredients;
 
 public interface RecipeIngredientsService {
 
-    recipe_ingredients addRecipeIngredient(recipe_ingredients recipeIngredient);
+    RecipeIngredients addRecipeIngredient(RecipeIngredients recipeIngredient);
 
-    List<recipe_ingredients> getAllRecipeIngredients();
+    List<RecipeIngredients> getAllRecipeIngredients();
 
-    recipe_ingredients getRecipeIngredientById(Long id);
+    RecipeIngredients getRecipeIngredientById(Long id);
 
-    recipe_ingredients updateRecipeIngredient(Long id, recipe_ingredients recipeIngredient);
+    RecipeIngredients updateRecipeIngredient(Long id, RecipeIngredients recipeIngredient);
 
     void deleteRecipeIngredient(Long id);
 

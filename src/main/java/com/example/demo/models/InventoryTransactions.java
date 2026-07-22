@@ -3,11 +3,18 @@ package com.example.demo.models;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "inventory_transactions")
-public class inventory_transactions {
+public class InventoryTransactions {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,11 +22,11 @@ public class inventory_transactions {
 
     @ManyToOne
     @JoinColumn(name = "inventory_id", nullable = false)
-    private inventory inventory;
+    private Inventory inventory;
 
     @ManyToOne
     @JoinColumn(name = "ingredient_id", nullable = false)
-    private ingredients ingredient;
+    private Ingredients ingredient;
 
     @Column(name = "transaction_type", nullable = false)
     private String transactionType;
@@ -41,12 +48,10 @@ public class inventory_transactions {
 
     @ManyToOne
     @JoinColumn(name = "created_by")
-    private users createdBy;
+    private Users createdBy;
 
-    public inventory_transactions() {
+    public InventoryTransactions() {
     }
-
-    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -56,19 +61,19 @@ public class inventory_transactions {
         this.id = id;
     }
 
-    public inventory getInventory() {
+    public Inventory getInventory() {
         return inventory;
     }
 
-    public void setInventory(inventory inventory) {
+    public void setInventory(Inventory inventory) {
         this.inventory = inventory;
     }
 
-    public ingredients getIngredient() {
+    public Ingredients getIngredient() {
         return ingredient;
     }
 
-    public void setIngredient(ingredients ingredient) {
+    public void setIngredient(Ingredients ingredient) {
         this.ingredient = ingredient;
     }
 
@@ -120,11 +125,11 @@ public class inventory_transactions {
         this.remarks = remarks;
     }
 
-    public users getCreatedBy() {
+    public Users getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(users createdBy) {
+    public void setCreatedBy(Users createdBy) {
         this.createdBy = createdBy;
     }
 }

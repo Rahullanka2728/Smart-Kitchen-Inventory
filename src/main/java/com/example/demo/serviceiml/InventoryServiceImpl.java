@@ -2,42 +2,44 @@ package com.example.demo.serviceiml;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.models.inventory;
+import com.example.demo.models.Inventory;
 import com.example.demo.repository.InventoryRepository;
 import com.example.demo.service.InventoryService;
 
 @Service
 public class InventoryServiceImpl implements InventoryService {
 
-    @Autowired
-    private InventoryRepository inventoryRepository;
+    private final InventoryRepository inventoryRepository;
+
+    public InventoryServiceImpl(InventoryRepository inventoryRepository) {
+        this.inventoryRepository = inventoryRepository;
+    }
 
     @Override
-    public inventory addInventory(inventory inventory) {
+    public Inventory addInventory(Inventory inventory) {
 
         return inventoryRepository.save(inventory);
     }
 
     @Override
-    public List<inventory> getAllInventory() {
+    public List<Inventory> getAllInventory() {
 
         return inventoryRepository.findAll();
     }
 
     @Override
-    public inventory getInventoryById(Long id) {
+    public Inventory getInventoryById(Long id) {
 
         return inventoryRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Inventory not found"));
     }
 
     @Override
-    public inventory updateInventory(Long id, inventory inventory) {
+    public Inventory updateInventory(Long id, Inventory inventory) {
 
-        inventory existingInventory = inventoryRepository.findById(id)
+        Inventory existingInventory = inventoryRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Inventory not found"));
 
         existingInventory.setIngredient(inventory.getIngredient());
@@ -57,7 +59,7 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     public void deleteInventory(Long id) {
 
-        inventory existingInventory = inventoryRepository.findById(id)
+        Inventory existingInventory = inventoryRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Inventory not found"));
 
         inventoryRepository.delete(existingInventory);

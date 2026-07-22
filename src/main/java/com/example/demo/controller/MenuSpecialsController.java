@@ -2,10 +2,9 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.models.menu_specials;
+import com.example.demo.models.MenuSpecials;
 import com.example.demo.service.MenuSpecialsService;
 
 @RestController
@@ -13,27 +12,30 @@ import com.example.demo.service.MenuSpecialsService;
 @CrossOrigin(origins = "*")
 public class MenuSpecialsController {
 
-    @Autowired
-    private MenuSpecialsService service;
+    private final MenuSpecialsService service;
+
+    public MenuSpecialsController(MenuSpecialsService service) {
+        this.service = service;
+    }
 
     @PostMapping
-    public menu_specials save(@RequestBody menu_specials special) {
+    public MenuSpecials save(@RequestBody MenuSpecials special) {
         return service.save(special);
     }
 
     @GetMapping
-    public List<menu_specials> getAll() {
+    public List<MenuSpecials> getAll() {
         return service.getAll();
     }
 
     @GetMapping("/{id}")
-    public menu_specials getById(@PathVariable Long id) {
+    public MenuSpecials getById(@PathVariable Long id) {
         return service.getById(id);
     }
 
     @PutMapping("/{id}")
-    public menu_specials update(@PathVariable Long id,
-                                @RequestBody menu_specials special) {
+    public MenuSpecials update(@PathVariable Long id,
+                                @RequestBody MenuSpecials special) {
         return service.update(id, special);
     }
 

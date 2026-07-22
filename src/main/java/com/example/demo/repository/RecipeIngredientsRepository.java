@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.models.recipe_ingredients;
+import com.example.demo.models.RecipeIngredients;
 
 @Repository
-public interface RecipeIngredientsRepository extends JpaRepository<recipe_ingredients, Long> {
+public interface RecipeIngredientsRepository extends JpaRepository<RecipeIngredients, Long> {
 
-    List<recipe_ingredients> findByRecipeId(Long recipeId);
+    List<RecipeIngredients> findByRecipeId(Long recipeId);
 
 }

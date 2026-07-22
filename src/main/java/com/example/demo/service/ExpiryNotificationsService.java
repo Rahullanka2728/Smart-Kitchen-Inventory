@@ -2,17 +2,17 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.models.expiry_notifications;
+import com.example.demo.models.ExpiryNotifications;
 
 public interface ExpiryNotificationsService {
 
-    expiry_notifications save(expiry_notifications notification);
+    ExpiryNotifications save(ExpiryNotifications notification);
 
-    List<expiry_notifications> getAll();
+    List<ExpiryNotifications> getAll();
 
-    expiry_notifications getById(Long id);
+    ExpiryNotifications getById(Long id);
 
-    expiry_notifications update(Long id, expiry_notifications notification);
+    ExpiryNotifications update(Long id, ExpiryNotifications notification);
 
     void delete(Long id);
 

@@ -2,10 +2,9 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.models.expiry_notifications;
+import com.example.demo.models.ExpiryNotifications;
 import com.example.demo.service.ExpiryNotificationsService;
 
 @RestController
@@ -13,30 +12,33 @@ import com.example.demo.service.ExpiryNotificationsService;
 @CrossOrigin(origins = "*")
 public class ExpiryNotificationsController {
 
-    @Autowired
-    private ExpiryNotificationsService service;
+    private final ExpiryNotificationsService service;
+
+    public ExpiryNotificationsController(ExpiryNotificationsService service) {
+        this.service = service;
+    }
 
     @PostMapping
-    public expiry_notifications save(@RequestBody expiry_notifications notification) {
+    public ExpiryNotifications save(@RequestBody ExpiryNotifications notification) {
 
         return service.save(notification);
     }
 
     @GetMapping
-    public List<expiry_notifications> getAll() {
+    public List<ExpiryNotifications> getAll() {
 
         return service.getAll();
     }
 
     @GetMapping("/{id}")
-    public expiry_notifications getById(@PathVariable Long id) {
+    public ExpiryNotifications getById(@PathVariable Long id) {
 
         return service.getById(id);
     }
 
     @PutMapping("/{id}")
-    public expiry_notifications update(@PathVariable Long id,
-            @RequestBody expiry_notifications notification) {
+    public ExpiryNotifications update(@PathVariable Long id,
+            @RequestBody ExpiryNotifications notification) {
 
         return service.update(id, notification);
     }

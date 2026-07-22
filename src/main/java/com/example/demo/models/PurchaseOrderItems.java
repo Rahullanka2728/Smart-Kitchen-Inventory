@@ -2,11 +2,18 @@ package com.example.demo.models;
 
 import java.math.BigDecimal;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "purchase_order_items")
-public class purchase_order_items {
+public class PurchaseOrderItems {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,11 +21,11 @@ public class purchase_order_items {
 
     @ManyToOne
     @JoinColumn(name = "purchase_order_id", nullable = false)
-    private purchase_orders purchaseOrder;
+    private PurchaseOrders purchaseOrder;
 
     @ManyToOne
     @JoinColumn(name = "ingredient_id", nullable = false)
-    private ingredients ingredient;
+    private Ingredients ingredient;
 
     @Column(nullable = false)
     private BigDecimal quantity;
@@ -38,10 +45,8 @@ public class purchase_order_items {
     @Column(columnDefinition = "TEXT")
     private String remarks;
 
-    public purchase_order_items() {
+    public PurchaseOrderItems() {
     }
-
-    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -51,19 +56,19 @@ public class purchase_order_items {
         this.id = id;
     }
 
-    public purchase_orders getPurchaseOrder() {
+    public PurchaseOrders getPurchaseOrder() {
         return purchaseOrder;
     }
 
-    public void setPurchaseOrder(purchase_orders purchaseOrder) {
+    public void setPurchaseOrder(PurchaseOrders purchaseOrder) {
         this.purchaseOrder = purchaseOrder;
     }
 
-    public ingredients getIngredient() {
+    public Ingredients getIngredient() {
         return ingredient;
     }
 
-    public void setIngredient(ingredients ingredient) {
+    public void setIngredient(Ingredients ingredient) {
         this.ingredient = ingredient;
     }
 

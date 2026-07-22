@@ -2,17 +2,17 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.models.suppliers;
+import com.example.demo.models.Suppliers;
 
 public interface SuppliersService {
 
-    suppliers addSupplier(suppliers supplier);
+    Suppliers addSupplier(Suppliers supplier);
 
-    List<suppliers> getAllSuppliers();
+    List<Suppliers> getAllSuppliers();
 
-    suppliers getSupplierById(Long id);
+    Suppliers getSupplierById(Long id);
 
-    suppliers updateSupplier(Long id, suppliers supplier);
+    Suppliers updateSupplier(Long id, Suppliers supplier);
 
     void deleteSupplier(Long id);
 

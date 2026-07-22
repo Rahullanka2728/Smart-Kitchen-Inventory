@@ -2,10 +2,9 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.models.inventory;
+import com.example.demo.models.Inventory;
 import com.example.demo.service.InventoryService;
 
 @RestController
@@ -13,27 +12,30 @@ import com.example.demo.service.InventoryService;
 @CrossOrigin(origins = "*")
 public class InventoryController {
 
-    @Autowired
-    private InventoryService inventoryService;
+    private final InventoryService inventoryService;
+
+    public InventoryController(InventoryService inventoryService) {
+        this.inventoryService = inventoryService;
+    }
 
     @PostMapping
-    public inventory addInventory(@RequestBody inventory inventory) {
+    public Inventory addInventory(@RequestBody Inventory inventory) {
         return inventoryService.addInventory(inventory);
     }
 
     @GetMapping
-    public List<inventory> getAllInventory() {
+    public List<Inventory> getAllInventory() {
         return inventoryService.getAllInventory();
     }
 
     @GetMapping("/{id}")
-    public inventory getInventoryById(@PathVariable Long id) {
+    public Inventory getInventoryById(@PathVariable Long id) {
         return inventoryService.getInventoryById(id);
     }
 
     @PutMapping("/{id}")
-    public inventory updateInventory(@PathVariable Long id,
-                                     @RequestBody inventory inventory) {
+    public Inventory updateInventory(@PathVariable Long id,
+                                     @RequestBody Inventory inventory) {
         return inventoryService.updateInventory(id, inventory);
     }
 

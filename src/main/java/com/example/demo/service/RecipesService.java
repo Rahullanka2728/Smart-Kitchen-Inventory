@@ -2,18 +2,19 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.models.recipes;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.example.demo.models.Recipes;
 
 public interface RecipesService {
 
-    recipes addRecipe(recipes recipe);
+    Recipes addRecipe(Recipes recipe);
 
-    List<recipes> getAllRecipes();
+    List<Recipes> getAllRecipes();
 
-    recipes getRecipeById(Long id);
+    Recipes getRecipeById(Long id);
 
-    recipes updateRecipe(Long id, recipes recipe);
+    Recipes updateRecipe(Long id, Recipes recipe);
 
     void deleteRecipe(Long id);
 

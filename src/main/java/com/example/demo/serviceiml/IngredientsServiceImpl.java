@@ -2,21 +2,23 @@ package com.example.demo.serviceiml;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.models.ingredients;
+import com.example.demo.models.Ingredients;
 import com.example.demo.repository.IngredientsRepository;
 import com.example.demo.service.IngredientsService;
 
 @Service
 public class IngredientsServiceImpl implements IngredientsService {
 
-    @Autowired
-    private IngredientsRepository ingredientsRepository;
+    private final IngredientsRepository ingredientsRepository;
+
+    public IngredientsServiceImpl(IngredientsRepository ingredientsRepository) {
+        this.ingredientsRepository = ingredientsRepository;
+    }
 
     @Override
-    public ingredients addIngredient(ingredients ingredient) {
+    public Ingredients addIngredient(Ingredients ingredient) {
 
         if (ingredientsRepository.existsByIngredientName(ingredient.getIngredientName())) {
             throw new RuntimeException("Ingredient already exists");
@@ -26,21 +28,21 @@ public class IngredientsServiceImpl implements IngredientsService {
     }
 
     @Override
-    public List<ingredients> getAllIngredients() {
+    public List<Ingredients> getAllIngredients() {
         return ingredientsRepository.findAll();
     }
 
     @Override
-    public ingredients getIngredientById(Long id) {
+    public Ingredients getIngredientById(Long id) {
 
         return ingredientsRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Ingredient not found"));
     }
 
     @Override
-    public ingredients updateIngredient(Long id, ingredients ingredient) {
+    public Ingredients updateIngredient(Long id, Ingredients ingredient) {
 
-        ingredients existingIngredient = ingredientsRepository.findById(id)
+        Ingredients existingIngredient = ingredientsRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Ingredient not found"));
 
         existingIngredient.setIngredientName(ingredient.getIngredientName());
@@ -55,7 +57,7 @@ public class IngredientsServiceImpl implements IngredientsService {
     @Override
     public void deleteIngredient(Long id) {
 
-        ingredients ingredient = ingredientsRepository.findById(id)
+        Ingredients ingredient = ingredientsRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Ingredient not found"));
 
         ingredientsRepository.delete(ingredient);

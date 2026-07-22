@@ -2,21 +2,23 @@ package com.example.demo.serviceiml;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.models.suppliers;
+import com.example.demo.models.Suppliers;
 import com.example.demo.repository.SuppliersRepository;
 import com.example.demo.service.SuppliersService;
 
 @Service
 public class SuppliersServiceImpl implements SuppliersService {
 
-    @Autowired
-    private SuppliersRepository suppliersRepository;
+    private final SuppliersRepository suppliersRepository;
+
+    public SuppliersServiceImpl(SuppliersRepository suppliersRepository) {
+        this.suppliersRepository = suppliersRepository;
+    }
 
     @Override
-    public suppliers addSupplier(suppliers supplier) {
+    public Suppliers addSupplier(Suppliers supplier) {
 
         if (suppliersRepository.existsByEmail(supplier.getEmail())) {
             throw new RuntimeException("Supplier email already exists");
@@ -26,21 +28,21 @@ public class SuppliersServiceImpl implements SuppliersService {
     }
 
     @Override
-    public List<suppliers> getAllSuppliers() {
+    public List<Suppliers> getAllSuppliers() {
         return suppliersRepository.findAll();
     }
 
     @Override
-    public suppliers getSupplierById(Long id) {
+    public Suppliers getSupplierById(Long id) {
 
         return suppliersRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Supplier not found"));
     }
 
     @Override
-    public suppliers updateSupplier(Long id, suppliers supplier) {
+    public Suppliers updateSupplier(Long id, Suppliers supplier) {
 
-        suppliers existingSupplier = suppliersRepository.findById(id)
+        Suppliers existingSupplier = suppliersRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Supplier not found"));
 
         existingSupplier.setSupplierName(supplier.getSupplierName());
@@ -56,7 +58,7 @@ public class SuppliersServiceImpl implements SuppliersService {
     @Override
     public void deleteSupplier(Long id) {
 
-        suppliers supplier = suppliersRepository.findById(id)
+        Suppliers supplier = suppliersRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Supplier not found"));
 
         suppliersRepository.delete(supplier);

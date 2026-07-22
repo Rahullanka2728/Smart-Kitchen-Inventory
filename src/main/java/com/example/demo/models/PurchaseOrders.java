@@ -4,11 +4,18 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "purchase_orders")
-public class purchase_orders {
+public class PurchaseOrders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +23,7 @@ public class purchase_orders {
 
     @ManyToOne
     @JoinColumn(name = "supplier_id", nullable = false)
-    private suppliers supplier;
+    private Suppliers supplier;
 
     @Column(name = "order_number", nullable = false, unique = true)
     private String orderNumber;
@@ -45,10 +52,8 @@ public class purchase_orders {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    public purchase_orders() {
+    public PurchaseOrders() {
     }
-
-    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -58,11 +63,11 @@ public class purchase_orders {
         this.id = id;
     }
 
-    public suppliers getSupplier() {
+    public Suppliers getSupplier() {
         return supplier;
     }
 
-    public void setSupplier(suppliers supplier) {
+    public void setSupplier(Suppliers supplier) {
         this.supplier = supplier;
     }
 

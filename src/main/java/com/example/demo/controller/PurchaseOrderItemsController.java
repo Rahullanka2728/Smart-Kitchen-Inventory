@@ -2,10 +2,9 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.models.purchase_order_items;
+import com.example.demo.models.PurchaseOrderItems;
 import com.example.demo.service.PurchaseOrderItemsService;
 
 @RestController
@@ -13,32 +12,35 @@ import com.example.demo.service.PurchaseOrderItemsService;
 @CrossOrigin(origins = "*")
 public class PurchaseOrderItemsController {
 
-    @Autowired
-    private PurchaseOrderItemsService purchaseOrderItemsService;
+    private final PurchaseOrderItemsService purchaseOrderItemsService;
+
+    public PurchaseOrderItemsController(PurchaseOrderItemsService purchaseOrderItemsService) {
+        this.purchaseOrderItemsService = purchaseOrderItemsService;
+    }
 
     @PostMapping
-    public purchase_order_items addPurchaseOrderItem(
-            @RequestBody purchase_order_items purchaseOrderItem) {
+    public PurchaseOrderItems addPurchaseOrderItem(
+            @RequestBody PurchaseOrderItems purchaseOrderItem) {
 
         return purchaseOrderItemsService.addPurchaseOrderItem(purchaseOrderItem);
     }
 
     @GetMapping
-    public List<purchase_order_items> getAllPurchaseOrderItems() {
+    public List<PurchaseOrderItems> getAllPurchaseOrderItems() {
 
         return purchaseOrderItemsService.getAllPurchaseOrderItems();
     }
 
     @GetMapping("/{id}")
-    public purchase_order_items getPurchaseOrderItemById(@PathVariable Long id) {
+    public PurchaseOrderItems getPurchaseOrderItemById(@PathVariable Long id) {
 
         return purchaseOrderItemsService.getPurchaseOrderItemById(id);
     }
 
     @PutMapping("/{id}")
-    public purchase_order_items updatePurchaseOrderItem(
+    public PurchaseOrderItems updatePurchaseOrderItem(
             @PathVariable Long id,
-            @RequestBody purchase_order_items purchaseOrderItem) {
+            @RequestBody PurchaseOrderItems purchaseOrderItem) {
 
         return purchaseOrderItemsService.updatePurchaseOrderItem(id, purchaseOrderItem);
     }

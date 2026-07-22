@@ -2,43 +2,45 @@ package com.example.demo.serviceiml;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.models.purchase_order_items;
+import com.example.demo.models.PurchaseOrderItems;
 import com.example.demo.repository.PurchaseOrderItemsRepository;
 import com.example.demo.service.PurchaseOrderItemsService;
 
 @Service
 public class PurchaseOrderItemsServiceImpl implements PurchaseOrderItemsService {
 
-    @Autowired
-    private PurchaseOrderItemsRepository purchaseOrderItemsRepository;
+    private final PurchaseOrderItemsRepository purchaseOrderItemsRepository;
+
+    public PurchaseOrderItemsServiceImpl(PurchaseOrderItemsRepository purchaseOrderItemsRepository) {
+        this.purchaseOrderItemsRepository = purchaseOrderItemsRepository;
+    }
 
     @Override
-    public purchase_order_items addPurchaseOrderItem(purchase_order_items purchaseOrderItem) {
+    public PurchaseOrderItems addPurchaseOrderItem(PurchaseOrderItems purchaseOrderItem) {
 
         return purchaseOrderItemsRepository.save(purchaseOrderItem);
     }
 
     @Override
-    public List<purchase_order_items> getAllPurchaseOrderItems() {
+    public List<PurchaseOrderItems> getAllPurchaseOrderItems() {
 
         return purchaseOrderItemsRepository.findAll();
     }
 
     @Override
-    public purchase_order_items getPurchaseOrderItemById(Long id) {
+    public PurchaseOrderItems getPurchaseOrderItemById(Long id) {
 
         return purchaseOrderItemsRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Purchase Order Item not found"));
     }
 
     @Override
-    public purchase_order_items updatePurchaseOrderItem(Long id,
-            purchase_order_items purchaseOrderItem) {
+    public PurchaseOrderItems updatePurchaseOrderItem(Long id,
+            PurchaseOrderItems purchaseOrderItem) {
 
-        purchase_order_items existingItem = purchaseOrderItemsRepository.findById(id)
+        PurchaseOrderItems existingItem = purchaseOrderItemsRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Purchase Order Item not found"));
 
         existingItem.setPurchaseOrder(purchaseOrderItem.getPurchaseOrder());
@@ -56,7 +58,7 @@ public class PurchaseOrderItemsServiceImpl implements PurchaseOrderItemsService 
     @Override
     public void deletePurchaseOrderItem(Long id) {
 
-        purchase_order_items existingItem = purchaseOrderItemsRepository.findById(id)
+        PurchaseOrderItems existingItem = purchaseOrderItemsRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Purchase Order Item not found"));
 
         purchaseOrderItemsRepository.delete(existingItem);

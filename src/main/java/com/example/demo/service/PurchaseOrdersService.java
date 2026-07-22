@@ -2,17 +2,17 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.models.purchase_orders;
+import com.example.demo.models.PurchaseOrders;
 
 public interface PurchaseOrdersService {
 
-    purchase_orders addPurchaseOrder(purchase_orders purchaseOrder);
+    PurchaseOrders addPurchaseOrder(PurchaseOrders purchaseOrder);
 
-    List<purchase_orders> getAllPurchaseOrders();
+    List<PurchaseOrders> getAllPurchaseOrders();
 
-    purchase_orders getPurchaseOrderById(Long id);
+    PurchaseOrders getPurchaseOrderById(Long id);
 
-    purchase_orders updatePurchaseOrder(Long id, purchase_orders purchaseOrder);
+    PurchaseOrders updatePurchaseOrder(Long id, PurchaseOrders purchaseOrder);
 
     void deletePurchaseOrder(Long id);
 

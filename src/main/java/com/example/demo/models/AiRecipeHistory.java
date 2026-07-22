@@ -2,11 +2,18 @@ package com.example.demo.models;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "ai_recipe_history")
-public class ai_recipe_history {
+public class AiRecipeHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +21,7 @@ public class ai_recipe_history {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private users user;
+    private Users user;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String prompt;
@@ -36,10 +43,8 @@ public class ai_recipe_history {
     @Column(name = "generated_at")
     private LocalDateTime generatedAt;
 
-    public ai_recipe_history() {
+    public AiRecipeHistory() {
     }
-
-    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -49,11 +54,11 @@ public class ai_recipe_history {
         this.id = id;
     }
 
-    public users getUser() {
+    public Users getUser() {
         return user;
     }
 
-    public void setUser(users user) {
+    public void setUser(Users user) {
         this.user = user;
     }
 

@@ -1,43 +1,36 @@
 package com.example.demo.models;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "ingredients")
-public class ingredients {
+public class Ingredients {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "ingredient_name", nullable = false, unique = true, length = 100)
+    @Column(name = "ingredient_name", nullable = false, unique = true)
     private String ingredientName;
 
-    @Column(nullable = false, length = 50)
     private String category;
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false)
     private String unit;
 
-    @Column(name = "minimum_stock", nullable = false)
-    private BigDecimal minimumStock;
+    @Column(name = "minimum_stock")
+    private Double minimumStock;
 
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
-    public ingredients() {
+    public Ingredients() {
     }
-
-    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -71,11 +64,11 @@ public class ingredients {
         this.unit = unit;
     }
 
-    public BigDecimal getMinimumStock() {
+    public Double getMinimumStock() {
         return minimumStock;
     }
 
-    public void setMinimumStock(BigDecimal minimumStock) {
+    public void setMinimumStock(Double minimumStock) {
         this.minimumStock = minimumStock;
     }
 
@@ -85,21 +78,5 @@ public class ingredients {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }

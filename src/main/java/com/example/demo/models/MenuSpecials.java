@@ -3,23 +3,30 @@ package com.example.demo.models;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "menu_specials")
-public class menu_specials {
+public class MenuSpecials {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "recipe_id", nullable =false)
-    private recipes recipe;
+    @JoinColumn(name = "recipe_id", nullable = false)
+    private Recipes recipe;
 
     @ManyToOne
     @JoinColumn(name = "generated_by")
-    private users generatedBy;
+    private Users generatedBy;
 
     @Column(name = "special_title", nullable = false)
     private String specialTitle;
@@ -38,10 +45,8 @@ public class menu_specials {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    public menu_specials() {
+    public MenuSpecials() {
     }
-
-    // Getters and Setters
 
     public Long getId() {
         return id;
@@ -51,19 +56,19 @@ public class menu_specials {
         this.id = id;
     }
 
-    public recipes getRecipe() {
+    public Recipes getRecipe() {
         return recipe;
     }
 
-    public void setRecipe(recipes recipe) {
+    public void setRecipe(Recipes recipe) {
         this.recipe = recipe;
     }
 
-    public users getGeneratedBy() {
+    public Users getGeneratedBy() {
         return generatedBy;
     }
 
-    public void setGeneratedBy(users generatedBy) {
+    public void setGeneratedBy(Users generatedBy) {
         this.generatedBy = generatedBy;
     }
 

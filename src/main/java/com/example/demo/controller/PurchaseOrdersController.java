@@ -2,10 +2,9 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.models.purchase_orders;
+import com.example.demo.models.PurchaseOrders;
 import com.example.demo.service.PurchaseOrdersService;
 
 @RestController
@@ -13,30 +12,33 @@ import com.example.demo.service.PurchaseOrdersService;
 @CrossOrigin(origins = "*")
 public class PurchaseOrdersController {
 
-    @Autowired
-    private PurchaseOrdersService purchaseOrdersService;
+    private final PurchaseOrdersService purchaseOrdersService;
+
+    public PurchaseOrdersController(PurchaseOrdersService purchaseOrdersService) {
+        this.purchaseOrdersService = purchaseOrdersService;
+    }
 
     @PostMapping
-    public purchase_orders addPurchaseOrder(@RequestBody purchase_orders purchaseOrder) {
+    public PurchaseOrders addPurchaseOrder(@RequestBody PurchaseOrders purchaseOrder) {
 
         return purchaseOrdersService.addPurchaseOrder(purchaseOrder);
     }
 
     @GetMapping
-    public List<purchase_orders> getAllPurchaseOrders() {
+    public List<PurchaseOrders> getAllPurchaseOrders() {
 
         return purchaseOrdersService.getAllPurchaseOrders();
     }
 
     @GetMapping("/{id}")
-    public purchase_orders getPurchaseOrderById(@PathVariable Long id) {
+    public PurchaseOrders getPurchaseOrderById(@PathVariable Long id) {
 
         return purchaseOrdersService.getPurchaseOrderById(id);
     }
 
     @PutMapping("/{id}")
-    public purchase_orders updatePurchaseOrder(@PathVariable Long id,
-                                              @RequestBody purchase_orders purchaseOrder) {
+    public PurchaseOrders updatePurchaseOrder(@PathVariable Long id,
+                                              @RequestBody PurchaseOrders purchaseOrder) {
 
         return purchaseOrdersService.updatePurchaseOrder(id, purchaseOrder);
     }

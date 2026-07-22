@@ -2,17 +2,17 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.models.ingredients;
+import com.example.demo.models.Ingredients;
 
 public interface IngredientsService {
 
-    ingredients addIngredient(ingredients ingredient);
+    Ingredients addIngredient(Ingredients ingredient);
 
-    List<ingredients> getAllIngredients();
+    List<Ingredients> getAllIngredients();
 
-    ingredients getIngredientById(Long id);
+    Ingredients getIngredientById(Long id);
 
-    ingredients updateIngredient(Long id, ingredients ingredient);
+    Ingredients updateIngredient(Long id, Ingredients ingredient);
 
     void deleteIngredient(Long id);
 

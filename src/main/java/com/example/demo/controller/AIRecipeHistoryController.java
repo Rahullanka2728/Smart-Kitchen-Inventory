@@ -2,10 +2,9 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.models.ai_recipe_history;
+import com.example.demo.models.AiRecipeHistory;
 import com.example.demo.service.AIRecipeHistoryService;
 
 @RestController
@@ -13,27 +12,30 @@ import com.example.demo.service.AIRecipeHistoryService;
 @CrossOrigin(origins = "*")
 public class AIRecipeHistoryController {
 
-    @Autowired
-    private AIRecipeHistoryService service;
+    private final AIRecipeHistoryService service;
+
+    public AIRecipeHistoryController(AIRecipeHistoryService service) {
+        this.service = service;
+    }
 
     @PostMapping
-    public ai_recipe_history save(@RequestBody ai_recipe_history history) {
+    public AiRecipeHistory save(@RequestBody AiRecipeHistory history) {
         return service.saveHistory(history);
     }
 
     @GetMapping
-    public List<ai_recipe_history> getAll() {
+    public List<AiRecipeHistory> getAll() {
         return service.getAllHistory();
     }
 
     @GetMapping("/{id}")
-    public ai_recipe_history getById(@PathVariable Long id) {
+    public AiRecipeHistory getById(@PathVariable Long id) {
         return service.getHistoryById(id);
     }
 
     @PutMapping("/{id}")
-    public ai_recipe_history update(@PathVariable Long id,
-                                    @RequestBody ai_recipe_history history) {
+    public AiRecipeHistory update(@PathVariable Long id,
+                                    @RequestBody AiRecipeHistory history) {
         return service.updateHistory(id, history);
     }
 

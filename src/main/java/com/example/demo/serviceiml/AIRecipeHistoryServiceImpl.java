@@ -2,39 +2,41 @@ package com.example.demo.serviceiml;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.models.ai_recipe_history;
+import com.example.demo.models.AiRecipeHistory;
 import com.example.demo.repository.AIRecipeHistoryRepository;
 import com.example.demo.service.AIRecipeHistoryService;
 
 @Service
 public class AIRecipeHistoryServiceImpl implements AIRecipeHistoryService {
 
-    @Autowired
-    private AIRecipeHistoryRepository repository;
+    private final AIRecipeHistoryRepository repository;
+
+    public AIRecipeHistoryServiceImpl(AIRecipeHistoryRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
-    public ai_recipe_history saveHistory(ai_recipe_history history) {
+    public AiRecipeHistory saveHistory(AiRecipeHistory history) {
         return repository.save(history);
     }
 
     @Override
-    public List<ai_recipe_history> getAllHistory() {
+    public List<AiRecipeHistory> getAllHistory() {
         return repository.findAll();
     }
 
     @Override
-    public ai_recipe_history getHistoryById(Long id) {
+    public AiRecipeHistory getHistoryById(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("History not found"));
     }
 
     @Override
-    public ai_recipe_history updateHistory(Long id, ai_recipe_history history) {
+    public AiRecipeHistory updateHistory(Long id, AiRecipeHistory history) {
 
-        ai_recipe_history existing = getHistoryById(id);
+        AiRecipeHistory existing = getHistoryById(id);
 
         existing.setUser(history.getUser());
         existing.setPrompt(history.getPrompt());

@@ -2,10 +2,9 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.models.inventory_transactions;
+import com.example.demo.models.InventoryTransactions;
 import com.example.demo.service.InventoryTransactionsService;
 
 @RestController
@@ -13,32 +12,35 @@ import com.example.demo.service.InventoryTransactionsService;
 @CrossOrigin(origins = "*")
 public class InventoryTransactionsController {
 
-    @Autowired
-    private InventoryTransactionsService inventoryTransactionsService;
+    private final InventoryTransactionsService inventoryTransactionsService;
+
+    public InventoryTransactionsController(InventoryTransactionsService inventoryTransactionsService) {
+        this.inventoryTransactionsService = inventoryTransactionsService;
+    }
 
     @PostMapping
-    public inventory_transactions addTransaction(
-            @RequestBody inventory_transactions transaction) {
+    public InventoryTransactions addTransaction(
+            @RequestBody InventoryTransactions transaction) {
 
         return inventoryTransactionsService.addTransaction(transaction);
     }
 
     @GetMapping
-    public List<inventory_transactions> getAllTransactions() {
+    public List<InventoryTransactions> getAllTransactions() {
 
         return inventoryTransactionsService.getAllTransactions();
     }
 
     @GetMapping("/{id}")
-    public inventory_transactions getTransactionById(@PathVariable Long id) {
+    public InventoryTransactions getTransactionById(@PathVariable Long id) {
 
         return inventoryTransactionsService.getTransactionById(id);
     }
 
     @PutMapping("/{id}")
-    public inventory_transactions updateTransaction(
+    public InventoryTransactions updateTransaction(
             @PathVariable Long id,
-            @RequestBody inventory_transactions transaction) {
+            @RequestBody InventoryTransactions transaction) {
 
         return inventoryTransactionsService.updateTransaction(id, transaction);
     }

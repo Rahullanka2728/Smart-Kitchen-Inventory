@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.models.inventory;
+import com.example.demo.models.Inventory;
 
 @Repository
-public interface InventoryRepository extends JpaRepository<inventory, Long>{
+public interface InventoryRepository extends JpaRepository<Inventory, Long> {
 
-    List<inventory> findByStatus(String status);
+    List<Inventory> findByStatus(String status);
 
 }

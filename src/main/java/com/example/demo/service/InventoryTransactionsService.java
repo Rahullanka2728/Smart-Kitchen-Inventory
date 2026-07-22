@@ -2,17 +2,17 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.models.inventory_transactions;
+import com.example.demo.models.InventoryTransactions;
 
 public interface InventoryTransactionsService {
 
-    inventory_transactions addTransaction(inventory_transactions transaction);
+    InventoryTransactions addTransaction(InventoryTransactions transaction);
 
-    List<inventory_transactions> getAllTransactions();
+    List<InventoryTransactions> getAllTransactions();
 
-    inventory_transactions getTransactionById(Long id);
+    InventoryTransactions getTransactionById(Long id);
 
-    inventory_transactions updateTransaction(Long id, inventory_transactions transaction);
+    InventoryTransactions updateTransaction(Long id, InventoryTransactions transaction);
 
     void deleteTransaction(Long id);
 

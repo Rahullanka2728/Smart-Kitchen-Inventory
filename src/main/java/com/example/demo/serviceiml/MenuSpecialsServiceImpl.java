@@ -2,42 +2,44 @@ package com.example.demo.serviceiml;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.models.menu_specials;
+import com.example.demo.models.MenuSpecials;
 import com.example.demo.repository.MenuSpecialsRepository;
 import com.example.demo.service.MenuSpecialsService;
 
 @Service
 public class MenuSpecialsServiceImpl implements MenuSpecialsService {
 
-    @Autowired
-    private MenuSpecialsRepository repository;
+    private final MenuSpecialsRepository repository;
+
+    public MenuSpecialsServiceImpl(MenuSpecialsRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
-    public menu_specials save(menu_specials special) {
+    public MenuSpecials save(MenuSpecials special) {
 
         return repository.save(special);
     }
 
     @Override
-    public List<menu_specials> getAll() {
+    public List<MenuSpecials> getAll() {
 
         return repository.findAll();
     }
 
     @Override
-    public menu_specials getById(Long id) {
+    public MenuSpecials getById(Long id) {
 
         return repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Special not found"));
     }
 
     @Override
-    public menu_specials update(Long id, menu_specials special) {
+    public MenuSpecials update(Long id, MenuSpecials special) {
 
-        menu_specials existing = getById(id);
+        MenuSpecials existing = getById(id);
 
         existing.setRecipe(special.getRecipe());
         existing.setGeneratedBy(special.getGeneratedBy());

@@ -2,10 +2,9 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.models.suppliers;
+import com.example.demo.models.Suppliers;
 import com.example.demo.service.SuppliersService;
 
 @RestController
@@ -13,27 +12,30 @@ import com.example.demo.service.SuppliersService;
 @CrossOrigin(origins = "*")
 public class SuppliersController {
 
-    @Autowired
-    private SuppliersService suppliersService;
+    private final SuppliersService suppliersService;
+
+    public SuppliersController(SuppliersService suppliersService) {
+        this.suppliersService = suppliersService;
+    }
 
     @PostMapping
-    public suppliers addSupplier(@RequestBody suppliers supplier) {
+    public Suppliers addSupplier(@RequestBody Suppliers supplier) {
         return suppliersService.addSupplier(supplier);
     }
 
     @GetMapping
-    public List<suppliers> getAllSuppliers() {
+    public List<Suppliers> getAllSuppliers() {
         return suppliersService.getAllSuppliers();
     }
 
     @GetMapping("/{id}")
-    public suppliers getSupplierById(@PathVariable Long id) {
+    public Suppliers getSupplierById(@PathVariable Long id) {
         return suppliersService.getSupplierById(id);
     }
 
     @PutMapping("/{id}")
-    public suppliers updateSupplier(@PathVariable Long id,
-                                    @RequestBody suppliers supplier) {
+    public Suppliers updateSupplier(@PathVariable Long id,
+                                    @RequestBody Suppliers supplier) {
         return suppliersService.updateSupplier(id, supplier);
     }
 

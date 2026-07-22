@@ -1,21 +1,25 @@
 package com.example.demo.models;
 
-import java.time.LocalDateTime;
-
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "recipes")
-public class recipes {
+public class Recipes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "recipe_name", nullable = false, length = 100)
+    @Column(name = "recipe_name", nullable = false)
     private String recipeName;
 
-    @Column(nullable = false)
     private String category;
 
     @Column(columnDefinition = "TEXT")
@@ -36,130 +40,88 @@ public class recipes {
 
     @ManyToOne
     @JoinColumn(name = "created_by")
-    private users createdBy;
+    private Users createdBy;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
-    public recipes() {
+    public Recipes() {
     }
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getRecipeName() {
-		return recipeName;
-	}
+    public String getRecipeName() {
+        return recipeName;
+    }
 
-	public void setRecipeName(String recipeName) {
-		this.recipeName = recipeName;
-	}
+    public void setRecipeName(String recipeName) {
+        this.recipeName = recipeName;
+    }
 
-	public String getCategory() {
-		return category;
-	}
+    public String getCategory() {
+        return category;
+    }
 
-	public void setCategory(String category) {
-		this.category = category;
-	}
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public String getInstructions() {
-		return instructions;
-	}
+    public String getInstructions() {
+        return instructions;
+    }
 
-	public void setInstructions(String instructions) {
-		this.instructions = instructions;
-	}
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
 
-	public Integer getCookingTime() {
-		return cookingTime;
-	}
+    public Integer getCookingTime() {
+        return cookingTime;
+    }
 
-	public void setCookingTime(Integer cookingTime) {
-		this.cookingTime = cookingTime;
-	}
+    public void setCookingTime(Integer cookingTime) {
+        this.cookingTime = cookingTime;
+    }
 
-	public Integer getServings() {
-		return servings;
-	}
+    public Integer getServings() {
+        return servings;
+    }
 
-	public void setServings(Integer servings) {
-		this.servings = servings;
-	}
+    public void setServings(Integer servings) {
+        this.servings = servings;
+    }
 
-	public String getDifficulty() {
-		return difficulty;
-	}
+    public String getDifficulty() {
+        return difficulty;
+    }
 
-	public void setDifficulty(String difficulty) {
-		this.difficulty = difficulty;
-	}
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
 
-	public String getImageUrl() {
-		return imageUrl;
-	}
+    public String getImageUrl() {
+        return imageUrl;
+    }
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
-	public users getCreatedBy() {
-		return createdBy;
-	}
+    public Users getCreatedBy() {
+        return createdBy;
+    }
 
-	public void setCreatedBy(users createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
-	public recipes(Long id, String recipeName, String category, String description, String instructions,
-			Integer cookingTime, Integer servings, String difficulty, String imageUrl, users createdBy,
-			LocalDateTime createdAt, LocalDateTime updatedAt) {
-		super();
-		this.id = id;
-		this.recipeName = recipeName;
-		this.category = category;
-		this.description = description;
-		this.instructions = instructions;
-		this.cookingTime = cookingTime;
-		this.servings = servings;
-		this.difficulty = difficulty;
-		this.imageUrl = imageUrl;
-		this.createdBy = createdBy;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
-	}
-
-
+    public void setCreatedBy(Users createdBy) {
+        this.createdBy = createdBy;
+    }
 }

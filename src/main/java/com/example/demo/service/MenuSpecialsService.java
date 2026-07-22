@@ -2,17 +2,17 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.models.menu_specials;
+import com.example.demo.models.MenuSpecials;
 
 public interface MenuSpecialsService {
 
-    menu_specials save(menu_specials special);
+    MenuSpecials save(MenuSpecials special);
 
-    List<menu_specials> getAll();
+    List<MenuSpecials> getAll();
 
-    menu_specials getById(Long id);
+    MenuSpecials getById(Long id);
 
-    menu_specials update(Long id, menu_specials special);
+    MenuSpecials update(Long id, MenuSpecials special);
 
     void delete(Long id);
 

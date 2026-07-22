@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.models.purchase_order_items;
+import com.example.demo.models.PurchaseOrderItems;
 
 @Repository
-public interface PurchaseOrderItemsRepository extends JpaRepository<purchase_order_items, Long> {
+public interface PurchaseOrderItemsRepository extends JpaRepository<PurchaseOrderItems, Long> {
 
-    List<purchase_order_items> findByPurchaseOrderId(Long purchaseOrderId);
+    List<PurchaseOrderItems> findByPurchaseOrderId(Long purchaseOrderId);
 
 }

@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.models.purchase_orders;
+import com.example.demo.models.PurchaseOrders;
 
 @Repository
-public interface PurchaseOrdersRepository extends JpaRepository<purchase_orders, Long> {
+public interface PurchaseOrdersRepository extends JpaRepository<PurchaseOrders, Long> {
 
-    List<purchase_orders> findByOrderStatus(String orderStatus);
+    List<PurchaseOrders> findByOrderStatus(String orderStatus);
 
-    List<purchase_orders> findByPaymentStatus(String paymentStatus);
+    List<PurchaseOrders> findByPaymentStatus(String paymentStatus);
 
 }

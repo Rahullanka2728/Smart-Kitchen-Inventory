@@ -2,42 +2,44 @@ package com.example.demo.serviceiml;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.models.purchase_orders;
+import com.example.demo.models.PurchaseOrders;
 import com.example.demo.repository.PurchaseOrdersRepository;
 import com.example.demo.service.PurchaseOrdersService;
 
 @Service
 public class PurchaseOrdersServiceImpl implements PurchaseOrdersService {
 
-    @Autowired
-    private PurchaseOrdersRepository purchaseOrdersRepository;
+    private final PurchaseOrdersRepository purchaseOrdersRepository;
+
+    public PurchaseOrdersServiceImpl(PurchaseOrdersRepository purchaseOrdersRepository) {
+        this.purchaseOrdersRepository = purchaseOrdersRepository;
+    }
 
     @Override
-    public purchase_orders addPurchaseOrder(purchase_orders purchaseOrder) {
+    public PurchaseOrders addPurchaseOrder(PurchaseOrders purchaseOrder) {
 
         return purchaseOrdersRepository.save(purchaseOrder);
     }
 
     @Override
-    public List<purchase_orders> getAllPurchaseOrders() {
+    public List<PurchaseOrders> getAllPurchaseOrders() {
 
         return purchaseOrdersRepository.findAll();
     }
 
     @Override
-    public purchase_orders getPurchaseOrderById(Long id) {
+    public PurchaseOrders getPurchaseOrderById(Long id) {
 
         return purchaseOrdersRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Purchase Order not found"));
     }
 
     @Override
-    public purchase_orders updatePurchaseOrder(Long id, purchase_orders purchaseOrder) {
+    public PurchaseOrders updatePurchaseOrder(Long id, PurchaseOrders purchaseOrder) {
 
-        purchase_orders existingOrder = purchaseOrdersRepository.findById(id)
+        PurchaseOrders existingOrder = purchaseOrdersRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Purchase Order not found"));
 
         existingOrder.setSupplier(purchaseOrder.getSupplier());
@@ -57,7 +59,7 @@ public class PurchaseOrdersServiceImpl implements PurchaseOrdersService {
     @Override
     public void deletePurchaseOrder(Long id) {
 
-        purchase_orders existingOrder = purchaseOrdersRepository.findById(id)
+        PurchaseOrders existingOrder = purchaseOrdersRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Purchase Order not found"));
 
         purchaseOrdersRepository.delete(existingOrder);

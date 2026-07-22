@@ -2,21 +2,23 @@ package com.example.demo.serviceiml;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.models.users;
+import com.example.demo.models.Users;
 import com.example.demo.repository.UsersRepository;
 import com.example.demo.service.UsersService;
 
 @Service
 public class UsersServiceImpl implements UsersService {
 
-    @Autowired
-    private UsersRepository usersRepository;
+    private final UsersRepository usersRepository;
+
+    public UsersServiceImpl(UsersRepository usersRepository) {
+        this.usersRepository = usersRepository;
+    }
 
     @Override
-    public users registerUser(users user) {
+    public Users registerUser(Users user) {
 
         if (usersRepository.existsByEmail(user.getEmail())) {
             throw new RuntimeException("Email already exists");
@@ -26,21 +28,21 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public List<users> getAllUsers() {
+    public List<Users> getAllUsers() {
         return usersRepository.findAll();
     }
 
     @Override
-    public users getUserById(Long id) {
+    public Users getUserById(Long id) {
 
         return usersRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     @Override
-    public users updateUser(Long id, users user) {
+    public Users updateUser(Long id, Users user) {
 
-        users existingUser = usersRepository.findById(id)
+        Users existingUser = usersRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         existingUser.setFirstName(user.getFirstName());
@@ -55,16 +57,16 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public void deleteUser(Long id) {
 
-        users existingUser = usersRepository.findById(id)
+        Users existingUser = usersRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         usersRepository.delete(existingUser);
     }
 
     @Override
-    public users login(String email, String password) {
+    public Users login(String email, String password) {
 
-        users user = usersRepository.findByEmail(email)
+        Users user = usersRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Invalid Email"));
 
         if (!user.getPassword().equals(password)) {

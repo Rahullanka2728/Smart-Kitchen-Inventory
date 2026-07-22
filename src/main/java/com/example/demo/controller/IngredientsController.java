@@ -2,10 +2,9 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.models.ingredients;
+import com.example.demo.models.Ingredients;
 import com.example.demo.service.IngredientsService;
 
 @RestController
@@ -13,27 +12,30 @@ import com.example.demo.service.IngredientsService;
 @CrossOrigin(origins = "*")
 public class IngredientsController {
 
-    @Autowired
-    private IngredientsService ingredientsService;
+    private final IngredientsService ingredientsService;
+
+    public IngredientsController(IngredientsService ingredientsService) {
+        this.ingredientsService = ingredientsService;
+    }
 
     @PostMapping
-    public ingredients addIngredient(@RequestBody ingredients ingredient) {
+    public Ingredients addIngredient(@RequestBody Ingredients ingredient) {
         return ingredientsService.addIngredient(ingredient);
     }
 
     @GetMapping
-    public List<ingredients> getAllIngredients() {
+    public List<Ingredients> getAllIngredients() {
         return ingredientsService.getAllIngredients();
     }
 
     @GetMapping("/{id}")
-    public ingredients getIngredientById(@PathVariable Long id) {
+    public Ingredients getIngredientById(@PathVariable Long id) {
         return ingredientsService.getIngredientById(id);
     }
 
     @PutMapping("/{id}")
-    public ingredients updateIngredient(@PathVariable Long id,
-                                        @RequestBody ingredients ingredient) {
+    public Ingredients updateIngredient(@PathVariable Long id,
+                                        @RequestBody Ingredients ingredient) {
         return ingredientsService.updateIngredient(id, ingredient);
     }
 
